@@ -12,7 +12,6 @@ type FormValues = {
   email: string;
   password: string;
 };
-
 export function LoginForm({
   className,
   ...props
@@ -23,7 +22,6 @@ export function LoginForm({
   const [token, setToken] = useState("");
 
   const onSubmit = async (data: FormValues) => {
-    
     const payload = {
       email: data.email,
       password: data.password,
@@ -40,11 +38,9 @@ export function LoginForm({
       );
       const result = (await response).data;
       console.log("Success:", result);
-
       localStorage.setItem("token", result.token);
       setToken(result.token);
       setLoggedIn(true);
-
       navigate("/home");
       console.log("Success:", (await response).data);
     } catch (error: any) {
@@ -56,7 +52,6 @@ export function LoginForm({
     }
     const storedEmail = localStorage.getItem("mail");
     const storedPassword = localStorage.getItem("pass");
-    
     if (data.email === storedEmail && data.password === storedPassword) {
       navigate("/home");
       localStorage.setItem("logged in", "true");
@@ -66,7 +61,6 @@ export function LoginForm({
     }
     console.log(data, loggedIn);
   };
-
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden">
