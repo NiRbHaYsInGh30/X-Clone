@@ -35,7 +35,7 @@ const ProfileInfo = styled.div`
 const ProfileName = styled.h1`
   font-size: 24px;
   font-weight:700;
-  margin-left: -60px;
+  margin-left: -17px;
 `;
 
 const ProfileUserName = styled.h2`
