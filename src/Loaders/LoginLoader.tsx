@@ -6,7 +6,7 @@ import { Headerr, LoginWrapper } from '../Components/Styles/Styles'
 
 export const LoginLoader = () => {
     return (
-        <Headerr>s
+        <Headerr>
             <LoginWrapper>
                 <LoginForm/>
             </LoginWrapper>

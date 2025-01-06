@@ -49,36 +49,47 @@ const StyledFooter = styled.div`
   }
 `;
 
-const LegalText = styled.div`
-  text-align: center;
-  font-size: 12px;
-  color: var(--color-muted-foreground);
-
-  a {
-    text-decoration: underline;
-    &:hover {
-      color: var(--color-primary);
-    }
-  }
-`;
-
 type FormValues = {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
 };
-
 export function SignupForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   const { control, handleSubmit } = useForm<FormValues>();
-  const navigate=useNavigate();
-  const onSubmit = (data: FormValues) => {
+  const navigate = useNavigate();
+  const onSubmit = async (data: FormValues) => {
     console.log(data);
     localStorage.setItem("mail", data.email);
     localStorage.setItem("pass", data.password);
-    navigate("/");
-  };
 
+    const payload = {
+      username: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    try {
+      const response = await fetch('https://8631-112-196-2-205.ngrok-free.app/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Network response was not ok: ${errorText}`);
+      }
+
+      const result = await response.json();
+      console.log('Success:', result);
+      navigate("/");
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   return (
     <FormWrapper className={className} {...props}>
       <StyledCard>

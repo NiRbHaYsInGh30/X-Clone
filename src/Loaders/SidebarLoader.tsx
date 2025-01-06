@@ -14,6 +14,7 @@ import { useNavigate } from "react-router";
 import { Button } from "../Components/ui/button";
 
 
+
 const items = [
   {
     title: "Home",
@@ -44,11 +45,6 @@ const items = [
     title: "Profile",
     url: "/profile",
     icon: User,
-  },
-  {
-    title: "More",
-    url: "/more",
-    icon: DotSquare,
   },
 ]
 export function AppSidebar() {

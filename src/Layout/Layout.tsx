@@ -49,7 +49,7 @@ const Layout = () => {
         <SideBars/>
       </Sidebar>
       <Content>
-        <AsideBar/>
+        {/* <AsideBar/> */}
         <WidthContainer>
           
           <Outlet />

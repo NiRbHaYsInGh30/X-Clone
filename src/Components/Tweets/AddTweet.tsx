@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
-import { FaHeart, FaRetweet, FaComment, FaTrash } from 'react-icons/fa';
+import { FaHeart, FaRetweet, FaComment, FaTrash, FaBookmark } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   border-: 1px solid #38444d;
 `;
 const Wrap=styled.div`  
-
 `
 
 
@@ -150,7 +149,7 @@ type FormValues = {
   image?: FileList;
 };
 
-const AddTweet: React.FC = () => {
+const AddTweet = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>();
   const [tweets, setTweets] = useState<{ text: string; imageUrl?: string }[]>([]);
 
@@ -192,7 +191,6 @@ const AddTweet: React.FC = () => {
           <input type="file" {...register('image')} />
           <Button type="submit">Tweet</Button>
         </Form>
-
         <TweetContainer>
           {tweets.map((tweet, index) => (
             <Tweet key={index}>
@@ -207,15 +205,15 @@ const AddTweet: React.FC = () => {
               <TweetActions>
                 <TweetAction>
                   <FaComment />
-                  <span>Comment</span>
                 </TweetAction>
                 <TweetAction>
                   <FaRetweet />
-                  <span>Retweet</span>
                 </TweetAction>
                 <TweetAction>
                   <FaHeart />
-                  <span>Like</span>
+                </TweetAction>
+                <TweetAction>
+                  <FaBookmark />
                 </TweetAction>
               </TweetActions>
             </Tweet>

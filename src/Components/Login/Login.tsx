@@ -20,11 +20,36 @@ export function LoginForm({
   const navigate = useNavigate();
   const[loggedIn, setLoggedIn] = useState(false);
 
-
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     const storedEmail = localStorage.getItem("mail");
     const storedPassword = localStorage.getItem("pass");
 
+    const payload={
+      email:data.email,
+      password:data.password
+    }
+    try{
+      const response=await fetch("https://8631-112-196-2-205.ngrok-free.app/api/auth/login",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(payload)
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Network response was not ok: ${errorText}`);
+      }
+
+      const result = await response.json();
+      console.log('Login Success:', result);
+      navigate("/home");
+    }catch(error){
+      console.error("Error:",error);
+    }
+
+
+    
     if (data.email === storedEmail && data.password === storedPassword) {
       navigate("/home");
       localStorage.setItem("logged in", "true");
@@ -36,7 +61,7 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6", className)} {...props}> 
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
