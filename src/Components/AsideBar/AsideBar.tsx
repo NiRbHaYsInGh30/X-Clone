@@ -46,14 +46,13 @@ const UserName = styled.span`
 `;
 
 const FollowButton = styled.button`
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #1da1f2;
-  color: #fff;
-  font-size: 0.875rem;
-  cursor: pointer;
-
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1da1f2;
+    color: #fff;
+    font-size: 0.875rem;
+    cursor: pointer;
   &:hover {
     background-color: #0d8ddb;
   }
@@ -64,18 +63,23 @@ const AsideBar = () => {
     <AsideBarWrapper>
       <Section>
         <SectionTitle>Who to follow</SectionTitle>
+
         <UserSuggestion>
           <UserName>User 1</UserName>
           <FollowButton>Follow</FollowButton>
         </UserSuggestion>
+
         <UserSuggestion>
           <UserName>User 2</UserName>
           <FollowButton>Follow</FollowButton>
         </UserSuggestion>
+
         <UserSuggestion>
           <UserName>User 3</UserName>
           <FollowButton>Follow</FollowButton>
         </UserSuggestion>
+        
+
       </Section>
       <Section>
         <SectionTitle>Trending</SectionTitle>
