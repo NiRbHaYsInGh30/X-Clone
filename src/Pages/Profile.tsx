@@ -3,34 +3,17 @@ import styled from "styled-components";
 
 const ProfileContainer = styled.div``;
 const Banner = styled.div`
-
   width: 100%;
 `;
 const BannerImage = styled.img`
-    width: 119%;
-    max-width: 1907px;
+    width: 120%;
+    max-width: 2000px;
     height: 209px;
     object-fit: cover;
     position: relative;
     right: 216px;
     bottom: 20px;
-
-    @media (max-width: 1668px) {
-        width: 97%;
-        left: -90.5px;
-        }
-@media (max-width: 768px) {
-        width: 52%;
-        left: 0px;
-    }
-  }
-@media (max-width: 992px) {       
-        width: 68%;
-        left: 0;
-}
-@media (max-width: 1400px) {
-        width: 80%;
-        left: 0px;
+    z-index:-1;
 }
 `;
 const ProfileImage = styled.img`
@@ -41,36 +24,60 @@ const ProfileImage = styled.img`
   position: absolute;
   top: 160px;
   z-index: 10;
-  left: 292px;
+  left: 300px;
 `;
 const ProfileInfo = styled.div`
-  font-weigth: 500;
-  display: flex;
-
+  position: absolute;
+  top: 280px;
+  left: 300px;
 `;
 
 const ProfileName = styled.h1`
-  position: absolute;
-  top: 270px;
-  margin-left: 15px;
   font-size: 24px;
-`;
-const ProfileUserName = styled.h2`
-  position: absolute;
-  top: 304px;
-  margin-left: 15px;
-  font-size: 13px;
-`;
-const Followers = styled.h3`
-  position: absolute;
-  top: 321px;
-  margin-left: 15px;
-  font-size: 13px;
+  font-weight:700;
+  margin-left: -60px;
 `;
 
+const ProfileUserName = styled.h2`
+  font-size: 14px;
+  color: gray;
+`;
+
+const Followers = styled.div`
+  font-size: 14px;
+  color: darkgray;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+const FollowerCount = styled.span`
+  font-weight: bold;
+  color: black;
+`;
+
+const ProfileBar = styled.div`
+  display:flex;
+  flex-direction:row;
+margin-top: 200px;
+gap:140px;
+width:81%;
+border-bottom:1px solid black;
+justify-content:center; 
+
+ 
+`
+const ProfileBarContent = styled.button`
+ &:hover {
+ 
+    background-color: #f0f0f0;
+    text-decoration:underline blue; 
+  }
+`
 const Profile = () => {
-  const name=localStorage.getItem("userName");
-  const userId=localStorage.getItem("mail");
+  const name = localStorage.getItem("userName");
+  const userId = localStorage.getItem("mail");
   return (
     <div>
       <ProfileContainer>
@@ -84,8 +91,22 @@ const Profile = () => {
         <ProfileInfo>
           <ProfileName>{name}</ProfileName>
           <ProfileUserName>{userId}</ProfileUserName>
-          <Followers>Followers:321</Followers>
+          <Followers>
+            <FollowerCount>321</FollowerCount> Followers
+          </Followers>
+          <Followers>
+            <FollowerCount>900</FollowerCount> Following
+          </Followers>
         </ProfileInfo>
+
+        <ProfileBar>
+          <ProfileBarContent>Posts</ProfileBarContent>
+          <ProfileBarContent>Media</ProfileBarContent>
+          <ProfileBarContent>Likes</ProfileBarContent>
+        </ProfileBar>
+        
+
+
       </ProfileContainer>
     </div>
   );

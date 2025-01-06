@@ -56,8 +56,7 @@ export function LoginForm({
     }
     const storedEmail = localStorage.getItem("mail");
     const storedPassword = localStorage.getItem("pass");
-
-
+    
     if (data.email === storedEmail && data.password === storedPassword) {
       navigate("/home");
       localStorage.setItem("logged in", "true");

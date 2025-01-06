@@ -165,6 +165,7 @@ const AddTweet = () => {
     if (data.image && data.image.length > 0) {
       imageUrl = URL.createObjectURL(data.image[0]);
     }
+    
     const newTweet = { text: data.tweet, imageUrl };
     const updatedTweets = [newTweet, ...tweets];
     setTweets(updatedTweets);
