@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
+import axios from "axios";
 
 type FormValues = {
   email: string;
@@ -18,38 +19,45 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const { control, handleSubmit } = useForm<FormValues>();
   const navigate = useNavigate();
-  const[loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [token, setToken] = useState("");
 
   const onSubmit = async (data: FormValues) => {
+    
+    const payload = {
+      email: data.email,
+      password: data.password,
+    };
+    try {
+      const response = axios.post(
+        "https://8631-112-196-2-205.ngrok-free.app/api/auth/login",
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = (await response).data;
+      console.log("Success:", result);
+
+      localStorage.setItem("token", result.token);
+      setToken(result.token);
+      setLoggedIn(true);
+
+      navigate("/home");
+      console.log("Success:", (await response).data);
+    } catch (error: any) {
+      if (error.response) {
+        console.error("Error:", error.response.data);
+      } else {
+        console.error("Error:", error.message);
+      }
+    }
     const storedEmail = localStorage.getItem("mail");
     const storedPassword = localStorage.getItem("pass");
 
-    const payload={
-      email:data.email,
-      password:data.password
-    }
-    try{
-      const response=await fetch("https://8631-112-196-2-205.ngrok-free.app/api/auth/login",{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify(payload)
-      });
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Network response was not ok: ${errorText}`);
-      }
 
-      const result = await response.json();
-      console.log('Login Success:', result);
-      navigate("/home");
-    }catch(error){
-      console.error("Error:",error);
-    }
-
-
-    
     if (data.email === storedEmail && data.password === storedPassword) {
       navigate("/home");
       localStorage.setItem("logged in", "true");
@@ -57,11 +65,11 @@ export function LoginForm({
     } else {
       alert("Invalid email or password");
     }
-    console.log(data,loggedIn);
+    console.log(data, loggedIn);
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}> 
+    <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
@@ -79,7 +87,13 @@ export function LoginForm({
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
-                    <Input {...field} id="email" type="email" placeholder="m@example.com" required />
+                    <Input
+                      {...field}
+                      id="email"
+                      type="email"
+                      placeholder="m@example.com"
+                      required
+                    />
                   )}
                 />
               </div>

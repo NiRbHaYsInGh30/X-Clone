@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+
 
 const FormWrapper = styled.div`
   display: flex;
@@ -60,34 +62,29 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
   const navigate = useNavigate();
   const onSubmit = async (data: FormValues) => {
     console.log(data);
-    localStorage.setItem("mail", data.email);
-    localStorage.setItem("pass", data.password);
-
     const payload = {
       username: data.name,
       email: data.email,
       password: data.password,
     };
-
     try {
-      const response = await fetch('https://8631-112-196-2-205.ngrok-free.app/api/auth/register', {
-        method: 'POST',
+      const response = axios.post('https://8631-112-196-2-205.ngrok-free.app/api/auth/register',payload, {
         headers: {
           'Content-Type': 'application/json', 
         },
-        body: JSON.stringify(payload),
       });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Network response was not ok: ${errorText}`);
-      }
-
-      const result = await response.json();
-      console.log('Success:', result);
+      localStorage.setItem("mail", data.email);
+      localStorage.setItem("pass", data.password);
+      localStorage.setItem("userName",data.name);
       navigate("/");
-    } catch (error) {
-      console.error('Error:', error);
+      console.log('Success:', (await response).data);
+
+    } catch (error:any) {
+      if (error.response) {
+        console.error('Error:', error.response.data);
+      } else {
+        console.error('Error:', error.message);
+      }
     }
   };
   return (
@@ -151,3 +148,4 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
     </FormWrapper>
   );
 }
+

@@ -46,7 +46,7 @@ const ProfileImage = styled.img`
 const ProfileInfo = styled.div`
   font-weigth: 500;
   display: flex;
-  
+
 `;
 
 const ProfileName = styled.h1`
@@ -69,6 +69,8 @@ const Followers = styled.h3`
 `;
 
 const Profile = () => {
+  const name=localStorage.getItem("userName");
+  const userId=localStorage.getItem("mail");
   return (
     <div>
       <ProfileContainer>
@@ -80,8 +82,8 @@ const Profile = () => {
         </Banner>
         <ProfileImage src="public/pfp/Nirbhay_Singh.jpg" alt="Profile" />
         <ProfileInfo>
-          <ProfileName>Name</ProfileName>
-          <ProfileUserName>@user123</ProfileUserName>
+          <ProfileName>{name}</ProfileName>
+          <ProfileUserName>{userId}</ProfileUserName>
           <Followers>Followers:321</Followers>
         </ProfileInfo>
       </ProfileContainer>

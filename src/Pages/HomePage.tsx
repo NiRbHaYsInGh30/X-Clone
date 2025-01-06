@@ -21,11 +21,9 @@ const MainContent = styled.div`
 const HomePage = () => {
   return (
     <PageWrapper>
-      <AsideBar />
       <MainContent>
         <AddTweet />
       </MainContent>
-      <AsideBar />
     </PageWrapper>
   );
 };

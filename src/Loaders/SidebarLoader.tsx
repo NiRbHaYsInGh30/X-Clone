@@ -63,6 +63,8 @@ export function AppSidebar() {
   const navigate=useNavigate();
   const handleLogout = () => {
    localStorage.setItem("logged in", "false");
+   //removing the token after logging out
+   localStorage.removeItem("token");
    navigate("/");
   }
   useEffect(() => {
