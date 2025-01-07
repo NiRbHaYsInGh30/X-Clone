@@ -56,48 +56,48 @@ const SearchBar = styled.input.attrs({ type: "search" })`
 
 const SearchBar1 = styled(SearchBar)``;
 
-const JobContainer = styled.div`
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 15px;
-  width: 100%;
-  max-width: 800px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-`;
+// const JobContainer = styled.div`
+//   background: #fff;
+//   border: 1px solid #e0e0e0;
+//   border-radius: 8px;
+//   padding: 20px;
+//   margin-bottom: 15px;
+//   width: 100%;
+//   max-width: 800px;
+//   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+// `;
 
-const JobText = styled.h1`
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  margin: 0 0 10px;
-`;
+// const JobText = styled.h1`
+//   font-size: 20px;
+//   font-weight: bold;
+//   color: #333;
+//   margin: 0 0 10px;
+// `;
 
-const JobLocation = styled.h1`
-  font-size: 16px;
-  font-weight: normal;
-  color: #555;
-  margin: 0 0 10px;
-`;
+// const JobLocation = styled.h1`
+//   font-size: 16px;
+//   font-weight: normal;
+//   color: #555;
+//   margin: 0 0 10px;
+// `;
 
-const JobDescription = styled.p`
-  font-size: 14px;
-  color: #666;
-  margin: 0 0 10px;
-`;
+// const JobDescription = styled.p`
+//   font-size: 14px;
+//   color: #666;
+//   margin: 0 0 10px;
+// `;
 
-const JobSalary = styled.h2`
-  font-size: 18px;
-  font-weight: bold;
-  color: #007bff;
-  margin: 0 0 15px;
-`;
+// const JobSalary = styled.h2`
+//   font-size: 18px;
+//   font-weight: bold;
+//   color: #007bff;
+//   margin: 0 0 15px;
+// `;
 
 const JobsPage = () => {
-  const company=[
-    {"title":"","Location":"","Description":" ","Salary":""},
-  ]
+  // const company=[
+  //   {"title":"","Location":"","Description":" ","Salary":""},
+  // ]
   return (
     <Fragment>
       <HeadingContainer>
@@ -110,7 +110,7 @@ const JobsPage = () => {
         <SearchBar1 placeholder="Enter the Location"></SearchBar1>
         <Button variant="destructive">Search</Button>
       </SearchBarContainer>
-      {company.map((index, value) => {
+      {/* {company.map((index, value) => {
         return (
           <JobContainer key={value}>
             <JobText>{index.title}</JobText>
@@ -120,7 +120,7 @@ const JobsPage = () => {
             <Button variant="destructive">Apply</Button>
           </JobContainer>
         );
-      })}
+      })} */}
       
 
 
