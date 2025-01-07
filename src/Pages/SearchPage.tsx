@@ -77,7 +77,7 @@ const ForYouPageContainer = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid black;
-    margin-left: -32px;
+    margin-left: -23px;
 }
   }
 `;
