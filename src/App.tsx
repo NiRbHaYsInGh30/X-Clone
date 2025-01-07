@@ -4,7 +4,6 @@ import HomePage from './Pages/HomePage';
 import SearchPage from './Pages/SearchPage';
 import BookmarksPage from './Pages/BookmarksPage';
 import JobsPage from './Pages/JobsPage';
-
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import { LoginLoader } from './Loaders/LoginLoader';
 import SignupLoader from './Loaders/SignupLoader';
@@ -93,7 +92,7 @@ const App = () => {
   ]);
 
   return (
-        <RouterProvider router={router} />
+    <RouterProvider router={router} />
   );
 };
 
