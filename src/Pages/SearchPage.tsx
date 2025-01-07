@@ -6,12 +6,15 @@ const SearchBarContainer = styled.div`
    display: flex;
     align-items: center;
     width: 100%;
-    max-width: 666px;
+    max-width: 983px;
     padding: 12px;
     border: 1px solid black;
     background-color: #ffffff;
     border-radius: 14px;
     margin-left: 16px;
+    @media(max-width:1559px){
+    max-width:900px;
+    }
 `;
 
 const SearchBar = styled.input.attrs({ type: 'search' })`
@@ -60,15 +63,27 @@ const ForYouPageContainer = styled.div`
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid black;;
+    border-bottom: 1px solid black;
+     margin-left: -82px;
 
-  @media (max-width: 768px) {
-    padding: 0 10px; 
+  @media (max-width: 1559px) {
+    margin-top: 10px;
+    padding: 0 20px;
+    display: flex
+;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid black;
+    margin-left: -32px;
+}
   }
 `;
 
 const ForYouPageHeading = styled.h1`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: black;
   margin: 0 0 10px;
@@ -105,11 +120,11 @@ const ForYouPageTotalPost = styled.p`
 
 const SearchPage = () => {
   const data=[
-    {"Trend":"Trending","HashTag":"#World","Post":"1.2M Posts"},
-    {"Trend":"Trending","HashTag":"#India","Post":"500k Posts"},
-    {"Trend":"Trending","HashTag":"#Sports","Post":"200k Posts"},
-    {"Trend":"Trending","HashTag":"#Business","Post":"30k Posts"},
-    {"Trend":"Trending","HashTag":"#Finance","Post":"1k Posts"},
+    {"Trend":"Trending in India","HashTag":"#World","Post":"1.2M Posts"},
+    {"Trend":"Trending for you","HashTag":"India","Post":"500k Posts"},
+    {"Trend":"Trending in sports","HashTag":"#Sports","Post":"200k Posts"},
+    {"Trend":"Trending in Business","HashTag":"#Business","Post":"30k Posts"},
+    {"Trend":"Finance : Trending","HashTag":"#Finance","Post":"1k Posts"},
   ]
   return (
     <Fragment>
