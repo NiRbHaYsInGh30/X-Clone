@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { FaHeart, FaRetweet, FaComment, FaTrash, FaBookmark } from 'react-icons/fa';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -14,10 +14,10 @@ const Wrapper = styled.div`
   // border-top: 1px solid #38444d;
   border-: 1px solid #38444d;
 `;
-const Wrap=styled.div`  
+export const Wrap=styled.div`  
 `
 
-const MainContent = styled.div`
+export const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@ const MainContent = styled.div`
   padding: 20px;
 `;
 
-const Form = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -39,7 +39,7 @@ const Form = styled.form`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-const Textarea = styled.textarea`
+export const Textarea = styled.textarea`
   width: 100%;
   color: black;
   background-color:rgb(255, 255, 255);
@@ -51,7 +51,7 @@ const Textarea = styled.textarea`
   font-size: 1rem;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   align-self: flex-end;
   padding: 10px 20px;
   border: none;
@@ -66,7 +66,7 @@ const Button = styled.button`
   }
 `;
 
-const TweetContainer = styled.div`
+export const TweetContainer = styled.div`
   margin-top: 20px;
   width: 100%;
   max-width: 700px;
@@ -77,7 +77,7 @@ const TweetContainer = styled.div`
   
 `;
 
-const Tweet = styled.div`
+export const Tweet = styled.div`
   background-color:rgb(255, 255, 255);
   padding: 15px;
   border-radius: 12px;
@@ -91,24 +91,24 @@ const Tweet = styled.div`
   
 `;
 
-const TweetHeader = styled.div`
+export const TweetHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-const UserName = styled.span`
+export const UserName = styled.span`
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 18px;
 `;
 
-const TweetContent = styled.div`
+export const TweetContent = styled.div`
   margin-top: 10px;
-  font-size: 1rem;
+  font-size: 20px;
   display:flex;
 `;
 
-const TweetImage = styled.img`
+export const TweetImage = styled.img`
   width: 100%;
   max-width: 500px;
   border-radius: 12px;
@@ -116,7 +116,7 @@ const TweetImage = styled.img`
   // margin-left:35px;
 `;
 
-const TweetActions = styled.div`
+export const TweetActions = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
@@ -124,7 +124,7 @@ const TweetActions = styled.div`
   border-top: 1px solid #38444d;
 `;
 
-const TweetAction = styled.button`
+export const TweetAction = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -138,7 +138,7 @@ const TweetAction = styled.button`
   }
 `;
 
-const ErrorMessage = styled.p`
+export const ErrorMessage = styled.p`
   color: red;
   font-size: 0.875rem;
 `;
@@ -221,7 +221,7 @@ const userName=localStorage.getItem("userName");
         </TweetContainer>
       </MainContent>
     </Wrapper>
-          </Wrap>
+    </Wrap>
   );
 };
 

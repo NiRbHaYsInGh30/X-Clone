@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
-
 
 const ProfileContainer = styled.div``;
 const Banner = styled.div`
@@ -21,7 +19,6 @@ const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border-style: solid 2px black;
   position: absolute;
   top: 160px;
   z-index: 10;
@@ -76,9 +73,13 @@ const ProfileBarContent = styled.button`
     border-radius: 5px;
   }
 `
+
 const Profile = () => {
   const name = localStorage.getItem("userName");
   const userId = localStorage.getItem("mail");
+
+
+ 
   return (
     <div>
       <ProfileContainer>
@@ -88,7 +89,7 @@ const Profile = () => {
             alt="Banner"
           />
         </Banner>
-        <ProfileImage src="public/pfp/Nirbhay_Singh.jpg" alt="Profile" />
+        <ProfileImage src="pfp/Nirbhay_Singh.jpg" alt="Profile" />
         <ProfileInfo>
           <ProfileName>{name}</ProfileName>
           <ProfileUserName>{userId}</ProfileUserName>
@@ -107,9 +108,8 @@ const Profile = () => {
         </ProfileBar>
 
 
-
-
       </ProfileContainer>
+      
     </div>
   );
 };
