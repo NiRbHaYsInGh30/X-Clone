@@ -1,74 +1,142 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import { Input } from '@/components/ui/input';
+import { FaSearch } from 'react-icons/fa';
+const Fragment=styled.div``
 
-const SearchBar = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background-color:rgb(0, 0, 0);
-  border-bottom: 1px solid #e1e8ed;
+const SearchBarContainer = styled.div`
+   display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 666px;
+    padding: 12px;
+    border: 1px solid black;
+    background-color: #ffffff;
+    border-radius: 14px;
+    margin-left: 16px;
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  color:black;
-  background-color: #fff;
+const SearchBar = styled.input.attrs({ type: 'search' })`
+  flex: 1;
+  padding: 2px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  outline: none;
+  &::hover {
+    background-color: #f0f0f0;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
-const TrendingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  max-width: 600px;
+
+const SearchBarSection = styled.div`
+ display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 100px;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    justify-content: center;
+    padding-bottom: 10px;
+    margin-left: -120px;
+  
+`;
+const FieldButtons=styled.button`
+  &:hover {
+ 
+    background-color: #f0f0f0;
+    text-decoration:underline blue; 
+    padding:1px;
+    border-radius: 5px;
+  }
+`
+const ForYouPageContainer = styled.div`
+     margin-top: 10px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid black;;
+
+  @media (max-width: 768px) {
+    padding: 0 10px; 
+  }
 `;
 
-const TrendingItem = styled.div`
-  padding: 10px;
-  border: 1px solid #e1e8ed;
-  border-radius: 8px;
-  background-color:rgb(0, 0, 0);
+const ForYouPageHeading = styled.h1`
+  font-size: 24px;
+  font-weight: 700;
+  color: black;
+  margin: 0 0 10px;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: 18px; 
+  }
 `;
 
-const TrendingTitle = styled.h3`
-  font-size: 1rem;
-  font-weight: bold;
-  color:white;
+const ForYouPageHashTag = styled.h2`
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5px 0;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: 16px; 
+  }
 `;
 
-const TrendingDescription = styled.p`
-  font-size: 0.875rem;
-  color:rgb(133, 144, 153);
+const ForYouPageTotalPost = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  color: gray;
+  margin: 5px 0 0; /* Spacing above */
+  text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const SearchPage = () => {
-  const [trending] = useState([
-    { title: 'React', description: 'Trending in Web Development' },
-    { title: 'JavaScript', description: 'Trending in Programming' },
-    { title: 'TypeScript', description: 'Trending in Type Safety' },
-    { title: 'Styled Components', description: 'Trending in CSS-in-JS' },
-  ]);
-
+  const data=[
+    {"Trend":"Trending","HashTag":"#World","Post":"1.2M Posts"},
+    {"Trend":"Trending","HashTag":"#India","Post":"500k Posts"},
+    {"Trend":"Trending","HashTag":"#Sports","Post":"200k Posts"},
+    {"Trend":"Trending","HashTag":"#Business","Post":"30k Posts"},
+    {"Trend":"Trending","HashTag":"#Finance","Post":"1k Posts"},
+  ]
   return (
-    <>
-      <SearchBar>
-        <Input type="search" placeholder="Search for a tweet" />
-      </SearchBar>
-      <Container>
-        <TrendingContainer>
-          {trending.map((item, index) => (
-            <TrendingItem key={index}>
-              <TrendingTitle>{item.title}</TrendingTitle>
-              <TrendingDescription>{item.description}</TrendingDescription>
-            </TrendingItem>
-          ))}
-        </TrendingContainer>
-      </Container>
-    </>
+    <Fragment>
+
+      <SearchBarContainer>
+        <FaSearch />
+        <SearchBar placeholder='Enter your search'>
+        </SearchBar>
+      </SearchBarContainer>
+      <SearchBarSection>
+        <FieldButtons>For you</FieldButtons>
+        <FieldButtons>Trending</FieldButtons>
+        <FieldButtons>News</FieldButtons>
+        <FieldButtons>Sports</FieldButtons>
+      </SearchBarSection>
+      {data.map((item, index) => (
+        <ForYouPageContainer key={index}>
+          <ForYouPageHeading>{item.Trend}</ForYouPageHeading>
+          <ForYouPageHashTag>{item.HashTag}</ForYouPageHashTag>
+          <ForYouPageTotalPost>{item.Post}</ForYouPageTotalPost>
+          <br/>
+          <br/>
+        </ForYouPageContainer>
+      ))}
+      
+
+    </Fragment>
   );
 };
 

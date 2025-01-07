@@ -59,6 +59,44 @@ const FollowButton = styled.button`
 `;
 
 const AsideBar = () => {
+  
+//   const caseString = "camel_to_case";
+//   const caseString2 = "camel-to-case";
+
+//   console.log(`Input value is :${caseString}`);
+//   console.log(`Input value is :${caseString2}`);
+//     const toCamelCase = (str:string) => {
+//       let arr = str.split('');
+//       for (let i = 0; i < arr.length; i++) {
+//           if (arr[i] === "_") {
+//               arr.splice(i, 1);
+//               arr[i] = arr[i].toUpperCase();
+//               console.log(`UpperCase Letter after _ : ${arr[i]}`);
+//           }
+//           if (arr[i] === "-") {
+//               arr.splice(i, 1);
+//               arr[i] = arr[i].toUpperCase();
+//               console.log(`UpperCase Letter after -: ${arr[i]}`);
+//           }
+//       }
+//       return arr.join('');
+//   }
+
+//   console.log(`first Output value is :${toCamelCase(caseString)}`);
+//   console.log(`Second Output value is :${toCamelCase(caseString2)}`);
+
+// const str = "convert-to_camel"
+
+// function toCamel(a:string){
+//     const newStr = a.replace("-",'_').split("_")
+//     const d = newStr.shift()
+//     const f = newStr.map(e=>e.slice(0,1).toUpperCase() + e.slice(1)).join("")
+//     const i = `${d}${f}`
+//     return i
+// }
+
+// console.log(toCamel(str))
+
   return (
     <AsideBarWrapper>
       <Section>

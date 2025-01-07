@@ -3,6 +3,7 @@ import { AppSidebar } from "../../Loaders/SidebarLoader";
 import { SidebarProvider } from "../ui/sidebar";
 
 
+
 export const Side=styled.div`
   padding:10px;
 `

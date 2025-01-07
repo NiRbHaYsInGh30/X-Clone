@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 
 const ProfileContainer = styled.div``;
@@ -64,15 +65,15 @@ margin-top: 200px;
 gap:140px;
 width:81%;
 border-bottom:1px solid black;
-justify-content:center; 
-
- 
+justify-content:center;
 `
 const ProfileBarContent = styled.button`
  &:hover {
  
     background-color: #f0f0f0;
     text-decoration:underline blue; 
+    padding:1px;
+    border-radius: 5px;
   }
 `
 const Profile = () => {
@@ -100,11 +101,12 @@ const Profile = () => {
         </ProfileInfo>
 
         <ProfileBar>
-          <ProfileBarContent>Posts</ProfileBarContent>
+          <ProfileBarContent >Posts</ProfileBarContent>
           <ProfileBarContent>Media</ProfileBarContent>
           <ProfileBarContent>Likes</ProfileBarContent>
         </ProfileBar>
-        
+
+
 
 
       </ProfileContainer>

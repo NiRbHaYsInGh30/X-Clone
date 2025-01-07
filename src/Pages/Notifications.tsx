@@ -18,7 +18,7 @@ const NotifContainer = styled.div`
   margin-top: 20px; 
   color: black;
   height: 83%;
-  width: 45%;
+  width: 53%;
   background-color: white;
   border-radius: 10px;
   position: fixed;

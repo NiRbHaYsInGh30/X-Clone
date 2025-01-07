@@ -2,7 +2,7 @@
 
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import SideBars from "../Components/Sidebar/SideBar";
+import SideBars from "../Components/Sidebar/SideBars";
 import AsideBar from "@/Components/AsideBar/AsideBar";
 
 export const LayoutContainer = styled.div`

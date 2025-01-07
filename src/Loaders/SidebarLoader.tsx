@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Badge, Bell, Bookmark, DotIcon, DotSquare, Hash, Home, Inbox, Search, User} from "lucide-react";
+import { Badge, Bell, Bookmark, Hash, Home, User} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -9,7 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem
-} from "@/components/ui/sidebar";
+} from "@/Components/ui/sidebar";
 import { useNavigate } from "react-router";
 import { Button } from "../Components/ui/button";
 

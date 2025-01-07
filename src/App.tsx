@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import HomePage from './Pages/HomePage';
 import SearchPage from './Pages/SearchPage';
@@ -56,7 +56,12 @@ const App = () => {
             <ProtectedRoute>
               <More />
             </ProtectedRoute>
-          )
+          ),
+          children:[
+            {
+              path:":post",
+            }
+          ]
         },
         {
           path: '/bookmarks',

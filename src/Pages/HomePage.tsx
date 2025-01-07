@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import AddTweet from '../Components/Tweets/AddTweet';
-import AsideBar from '../Components/AsideBar/AsideBar';
 
 const PageWrapper = styled.div`
   display: flex;

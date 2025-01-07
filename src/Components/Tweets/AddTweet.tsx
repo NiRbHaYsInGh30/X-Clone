@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import { FaHeart, FaRetweet, FaComment, FaTrash, FaBookmark } from 'react-icons/fa';
@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 `;
 const Wrap=styled.div`  
 `
-
 
 const MainContent = styled.div`
   flex: 1;
@@ -70,7 +69,7 @@ const Button = styled.button`
 const TweetContainer = styled.div`
   margin-top: 20px;
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -114,7 +113,7 @@ const TweetImage = styled.img`
   max-width: 500px;
   border-radius: 12px;
   margin-top: 10px;
-  margin-left:35px;
+  // margin-left:35px;
 `;
 
 const TweetActions = styled.div`
@@ -178,7 +177,7 @@ const AddTweet = () => {
     setTweets(updatedTweets);
     localStorage.setItem('tweets', JSON.stringify(updatedTweets));
   };
-
+const userName=localStorage.getItem("userName");
   return (
           <Wrap>
     <Wrapper>
@@ -196,7 +195,7 @@ const AddTweet = () => {
           {tweets.map((tweet, index) => (
             <Tweet key={index}>
               <TweetHeader>
-                <UserName>@User</UserName>
+                <UserName>{userName}</UserName>
                 <TweetAction onClick={() => handleDelete(index)}>
                   <FaTrash />
                 </TweetAction>
