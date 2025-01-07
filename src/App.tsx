@@ -8,7 +8,6 @@ import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import { LoginLoader } from './Loaders/LoginLoader';
 import SignupLoader from './Loaders/SignupLoader';
 import { RouterProvider } from 'react-router';
-import More from './Pages/More';
 import Notifications from './Pages/Notifications';
 import Profile from './Pages/Profile';
 
@@ -50,19 +49,6 @@ const App = () => {
           )
         },
         {
-          path: '/more',
-          element: (
-            <ProtectedRoute>
-              <More />
-            </ProtectedRoute>
-          ),
-          children:[
-            {
-              path:":post",
-            }
-          ]
-        },
-        {
           path: '/bookmarks',
           element: (
             <ProtectedRoute>
@@ -86,7 +72,6 @@ const App = () => {
             </ProtectedRoute>
           )
         },
-        
       ]
     }
   ]);

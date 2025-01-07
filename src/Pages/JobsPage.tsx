@@ -4,11 +4,12 @@ import styled from "styled-components";
 
 const Fragment = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color:rgb(255, 255, 255);
-  min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    min-height: 100vh;
+    margin-left: -190px
 `;
 
 const HeadingContainer = styled.div`
@@ -95,16 +96,17 @@ const SearchBar1 = styled(SearchBar)``;
 // `;
 
 const JobsPage = () => {
+  
   // const company=[
   //   {"title":"","Location":"","Description":" ","Salary":""},
   // ]
+
   return (
     <Fragment>
       <HeadingContainer>
         <HeadingImage src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg"></HeadingImage>
         <HeadingText>Welcome to X job Search</HeadingText>
       </HeadingContainer>
-
       <SearchBarContainer>
         <SearchBar placeholder="Enter the Role"></SearchBar>
         <SearchBar1 placeholder="Enter the Location"></SearchBar1>
@@ -121,9 +123,6 @@ const JobsPage = () => {
           </JobContainer>
         );
       })} */}
-      
-
-
     </Fragment>
   )
 }
