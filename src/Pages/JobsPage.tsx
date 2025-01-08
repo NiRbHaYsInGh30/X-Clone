@@ -98,20 +98,6 @@ const JobSalary = styled.h3`
   margin: 0 0 20px;
 `;
 
-const ApplyButton = styled.button`
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
-
 
 const JobsPage = () => {
 
