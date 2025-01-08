@@ -1,147 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import styled from 'styled-components';
+
 import { FaHeart, FaRetweet, FaComment, FaTrash, FaBookmark } from 'react-icons/fa';
-
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 100vh;
-  margin-right: 20px;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.96);
-  // border-top: 1px solid #38444d;
-  border-: 1px solid #38444d;
-`;
-export const Wrap=styled.div`  
-`
-
-export const MainContent = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-`;
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 150%;
-
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-`;
-
-export const Textarea = styled.textarea`
-  width: 100%;
-  color: black;
-  background-color:rgb(255, 255, 255);
-  border:1px solid black;
-  padding: 10px;
-
-  border-radius: 8px;
-  resize: none;
-  font-size: 1rem;
-`;
-
-export const Button = styled.button`
-  align-self: flex-end;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #1da1f2;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0d8ddb;
-  }
-`;
-
-export const TweetContainer = styled.div`
-  margin-top: 20px;
-  width: 150%;
-  // max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  
-  
-`;
-
-export const Tweet = styled.div`
-  background-color:rgb(255, 255, 255);
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid black;
-   background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-`;
-
-export const TweetHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const UserName = styled.span`
-  font-weight: bold;
-  font-size: 18px;
-`;
-
-export const TweetContent = styled.div`
-  margin-top: 10px;
-  font-size: 20px;
-  display:flex;
-`;
-
-export const TweetImage = styled.img`
-  width: 150%;
-  max-width: 500px;
-  border-radius: 12px;
-  margin-top: 10px;
-  // margin-left:35px;
-`;
-
-export const TweetActions = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid #38444d;
-`;
-
-export const TweetAction = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color:rgb(10, 10, 10);
-
-  &:hover {
-    color: #1da1f2;
-  }
-`;
-
-export const ErrorMessage = styled.p`
-  color: red;
-  font-size: 0.875rem;
-`;
+import { Buttonnn, ErrorMessage, Form, InputFieldStyle, MainContent, Textarea, Tweet, TweetAction, TweetActions, TweetContainer, TweetContent, TweetHeader, TweetImage, UserName, Wrap, Wrapper } from '../Styles/Styles';
+import { Button } from '../ui/button';
 
 type FormValues = {
   tweet: string;
@@ -149,15 +11,11 @@ type FormValues = {
 };
 
 const AddTweet = () => {
+  const userName=localStorage.getItem("userName");
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>();
   const [tweets, setTweets] = useState<{ text: string; imageUrl?: string }[]>([]);
 
-  useEffect(() => {
-    const storedTweets = localStorage.getItem('tweets');
-    if (storedTweets) {
-      setTweets(JSON.parse(storedTweets));
-    }
-  }, []);
+ 
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     let imageUrl;
@@ -177,9 +35,13 @@ const AddTweet = () => {
     setTweets(updatedTweets);
     localStorage.setItem('tweets', JSON.stringify(updatedTweets));
   };
-const userName=localStorage.getItem("userName");
+
+
+
+
+
   return (
-          <Wrap>
+    <Wrap>
     <Wrapper>
       <MainContent>
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -188,8 +50,8 @@ const userName=localStorage.getItem("userName");
             placeholder="What's happening?"
           />
           {errors.tweet && <ErrorMessage>{errors.tweet.message}</ErrorMessage>}
-          <input type="file" {...register('image')} />
-          <Button type="submit">Tweet</Button>
+          <InputFieldStyle type="file" {...register('image')} />
+          <Buttonnn type="submit">Tweet</Buttonnn >
         </Form>
         <TweetContainer>
           {tweets.map((tweet, index) => (
