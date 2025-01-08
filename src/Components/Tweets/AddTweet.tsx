@@ -29,8 +29,8 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
-  max-width: 600px;
+  width: 150%;
+
   background-color: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 12px;
@@ -68,8 +68,8 @@ export const Button = styled.button`
 
 export const TweetContainer = styled.div`
   margin-top: 20px;
-  width: 100%;
-  max-width: 700px;
+  width: 150%;
+  // max-width: 700px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -109,7 +109,7 @@ export const TweetContent = styled.div`
 `;
 
 export const TweetImage = styled.img`
-  width: 100%;
+  width: 150%;
   max-width: 500px;
   border-radius: 12px;
   margin-top: 10px;
