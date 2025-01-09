@@ -34,9 +34,6 @@ const AddTweet = () => {
            'Authorization': token
         },
       });
-      const handleDelete=()=>{
-        
-      }
       const newTweet = {
         text: data.tweet,
         imageUrl: response.data.imageUrl ? response.data.imageUrl : null,
