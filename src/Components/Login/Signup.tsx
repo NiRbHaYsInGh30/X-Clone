@@ -68,15 +68,13 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
       password: data.password,
     };
     try {
-      const response = axios.post('https://8631-112-196-2-205.ngrok-free.app/api/auth/register',payload, {
+      const response =await  axios.post('https://8631-112-196-2-205.ngrok-free.app/api/auth/register',payload, {
         headers: {
           'Content-Type': 'application/json', 
         },
       });
-      localStorage.setItem("mail", data.email);
-      localStorage.setItem("pass", data.password);
-      localStorage.setItem("userName",data.name);
-      console.log('Success:', (await response).data);
+
+      console.log('Success:',response.data);
       navigate("/");
 
     } catch (error:any) {

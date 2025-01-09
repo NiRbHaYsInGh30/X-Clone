@@ -26,11 +26,9 @@ const App = () => {
       children: [
         {
           path: '/home',
-          element: (
-            <ProtectedRoute>
+          element: 
               <HomePage />
-            </ProtectedRoute>
-          )
+            
         },
         {
           path: '/profile',

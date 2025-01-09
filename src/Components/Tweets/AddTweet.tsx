@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FaHeart, FaRetweet, FaComment, FaTrash, FaBookmark } from 'react-icons/fa';
 import { Buttonnn, ErrorMessage, Form, InputFieldStyle, MainContent, Textarea, Tweet, TweetAction, TweetActions, TweetContainer, TweetContent, TweetHeader, TweetImage, UserName, Wrap, Wrapper } from '../Styles/Styles';
@@ -13,6 +13,26 @@ const AddTweet = () => {
   const userName = localStorage.getItem("userName");
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>();
   const [tweets, setTweets] = useState<{ text: string; imageUrl?: string }[]>([]);
+  const[tweetData,setTweetData]=useState<{ text: string; imageUrl?: string }[]>([]);
+  const getData = async () => {
+    try {
+      const token = localStorage.getItem('token'); 
+      const response = await axios.get('https://8631-112-196-2-205.ngrok-free.app/api/tweets', {
+        headers: {
+          'Authorization':token,
+          'ngrok-skip-browser-warning': 'any',
+        },
+      });
+      setTweetData(response.data);
+    } catch (err) {
+      console.error('Error:', err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
 
@@ -39,7 +59,7 @@ const AddTweet = () => {
         imageUrl: response.data.imageUrl ? response.data.imageUrl : null,
       };
 
-      setTweets((prevTweets) => {
+      setTweetData((prevTweets) => {
         const updatedTweets = [newTweet, ...prevTweets];
         console.log(updatedTweets);
         return updatedTweets;
@@ -54,7 +74,7 @@ const AddTweet = () => {
       }
     }
   };
-
+  
   return (
     <Wrap>
       <Wrapper>
@@ -69,7 +89,7 @@ const AddTweet = () => {
             <Buttonnn type="submit">Tweet</Buttonnn>
           </Form>
           <TweetContainer>
-            {tweets.map((tweet, index) => (
+            {tweetData.map((tweet, index) => (
               <Tweet key={index}>
                 <TweetHeader>
                   <UserName>{userName}</UserName>
@@ -77,7 +97,7 @@ const AddTweet = () => {
                     <FaTrash />
                   </TweetAction>
                 </TweetHeader>
-                <TweetContent>{tweet.text}</TweetContent>
+                <TweetContent>{tweet.content}</TweetContent>
                 {tweet.imageUrl && <TweetImage src={tweet.imageUrl} alt="Tweet" />}
                 <TweetActions>
                   <TweetAction>

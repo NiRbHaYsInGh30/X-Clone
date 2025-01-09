@@ -18,8 +18,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const { control, handleSubmit } = useForm<FormValues>();
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [, setToken] = useState("");
+  const [token, setToken] = useState("");
 
   const onSubmit = async (data: FormValues) => {
     const payload = {
@@ -27,7 +26,7 @@ export function LoginForm({
       password: data.password,
     };
     try {
-      const response = axios.post(
+      const response = await axios.post(
         "https://8631-112-196-2-205.ngrok-free.app/api/auth/login",
         payload,
         { 
@@ -36,13 +35,15 @@ export function LoginForm({
           },
         }
       );
-      const result = (await response).data;
+      const result =response.data;
       console.log("Success:", result);
       localStorage.setItem("token", result.token);
       setToken(result.token);
-      setLoggedIn(true);
-      navigate("/home");
-      console.log("Success:", (await response).data);
+      if(response.status==200){
+
+        navigate("/home");
+      }
+      console.log("Success:", response.data);
     } catch (error: any) {
       if (error.response) {
         console.error("Error:", error.response.data);
@@ -50,17 +51,7 @@ export function LoginForm({
         console.error("Error:", error.message);
       }
     }
-    const storedEmail = localStorage.getItem("mail");
-    const storedPassword = localStorage.getItem("pass");
-    if (data.email === storedEmail && data.password === storedPassword) {
-      navigate("/home");
-      localStorage.setItem("logged in", "true");
-      setLoggedIn(true);
-    } else {
-      alert("Invalid email or password");
-    }
-    console.log(data, loggedIn);
-  };
+  }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden">
