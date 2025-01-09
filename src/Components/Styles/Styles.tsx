@@ -293,7 +293,7 @@ export const InputFieldStyle = styled.input.attrs({ type: "file" })`
 &::file-selector-button {
   margin-right: 20px;
   border: none;
-  background: #084cdf;
+  background-color: #1da1f2;
   padding: 10px 20px;
   border-radius: 8px;
   color: #fff;
@@ -318,16 +318,13 @@ export const TweetContainer = styled.div`
 `;
 
 export const Tweet = styled.div`
-  background-color:rgb(255, 255, 255);
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid black;
-   background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   
 `;
 
@@ -349,11 +346,11 @@ export const TweetContent = styled.div`
 `;
 
 export const TweetImage = styled.img`
-  width: 150%;
+  width: 100%;
   max-width: 500px;
   border-radius: 12px;
   margin-top: 10px;
-  // margin-left:35px;
+  height:100px;
 `;
 
 export const TweetActions = styled.div`

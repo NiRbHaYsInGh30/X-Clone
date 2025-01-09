@@ -76,8 +76,8 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
       localStorage.setItem("mail", data.email);
       localStorage.setItem("pass", data.password);
       localStorage.setItem("userName",data.name);
-      navigate("/");
       console.log('Success:', (await response).data);
+      navigate("/");
 
     } catch (error:any) {
       if (error.response) {
