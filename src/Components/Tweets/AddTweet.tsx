@@ -12,8 +12,7 @@ type FormValues = {
 const AddTweet = () => {
   const userName = localStorage.getItem("userName");
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>();
-  const [tweets, setTweets] = useState<{ text: string; imageUrl?: string }[]>([]);
-  const[tweetData,setTweetData]=useState<{ text: string; imageUrl?: string }[]>([]);
+  const[tweetData,setTweetData]=useState<{ content: string; imageUrl?: string }[]>([]);
   const getData = async () => {
     try {
       const token = localStorage.getItem('token'); 
@@ -55,7 +54,7 @@ const AddTweet = () => {
         },
       });
       const newTweet = {
-        text: data.tweet,
+        content: data.tweet,
         imageUrl: response.data.imageUrl ? response.data.imageUrl : null,
       };
 
