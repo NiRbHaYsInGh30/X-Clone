@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
-type FormValues = {
+export type FormValues = {
   email: string;
   password: string;
 };
@@ -18,41 +19,44 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const { control, handleSubmit } = useForm<FormValues>();
   const navigate = useNavigate();
-  const [token, setToken] = useState("");
+  const [, setToken] = useState("");
 
-  const onSubmit = async (data: FormValues) => {
-    const payload = {
-      email: data.email,
-      password: data.password,
-    };
-    try {
-      const response = await axios.post(
+  const post = useMutation({
+    mutationFn: (data: FormValues) => {
+      return axios.post(
         "https://8631-112-196-2-205.ngrok-free.app/api/auth/login",
-        payload,
-        { 
+        data,
+        {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      const result =response.data;
+    },
+    onSuccess:(response)=>{
+      const result=response.data;
       console.log("Success:", result);
       localStorage.setItem("token", result.token);
-      setToken(result.token);
-      if(response.status==200){
-
-        navigate("/home");
-      }
-      console.log("Success:", response.data);
-    } catch (error: any) {
+      localStorage.setItem("logged in", "true");
+       setToken(result.token);
+       navigate("/home");
+    },
+    onError:(error:any)=>{
       if (error.response) {
-        console.error("Error:", error.response.data);
-      } else {
-        console.error("Error:", error.message);
-      }
+             console.error("Error:", error.response.data);
+           } else {
+             console.error("Error:", error.message);
+         }
     }
-  }
+
+  });
+  const onSubmit = async (data: FormValues) => {
+    post.mutate(data);
+  };
   return (
+
+
+  
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
@@ -155,5 +159,6 @@ export function LoginForm({
         </CardContent>
       </Card>
     </div>
+
   );
 }

@@ -1,8 +1,25 @@
-import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FaHeart, FaRetweet, FaComment, FaTrash, FaBookmark } from 'react-icons/fa';
-import { Buttonnn, ErrorMessage, Form, InputFieldStyle, MainContent, Textarea, Tweet, TweetAction, TweetActions, TweetContainer, TweetContent, TweetHeader, TweetImage, UserName, Wrap, Wrapper } from '../Styles/Styles';
+import {
+  Buttonnn,
+  ErrorMessage,
+  Form,
+  InputFieldStyle,
+  MainContent,
+  Textarea,
+  Tweet,
+  TweetAction,
+  TweetActions,
+  TweetContainer,
+  TweetContent,
+  TweetHeader,
+  TweetImage,
+  UserName,
+  Wrap,
+  Wrapper,
+} from '../Styles/Styles';
 import axios from 'axios';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 type FormValues = {
   tweet: string;
@@ -10,70 +27,59 @@ type FormValues = {
 };
 
 const AddTweet = () => {
-  const userName = localStorage.getItem("userName");
+  const userName = localStorage.getItem('userName');
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>();
-  const[tweetData,setTweetData]=useState<{ content: string; imageUrl?: string }[]>([]);
-  const getData = async () => {
-    try {
-      const token = localStorage.getItem('token'); 
+  const queryClient = useQueryClient();
+
+
+  const { data: tweetData, error, isLoading } = useQuery({
+    queryKey: ['tweets'],
+    queryFn: async () => {
+      const token = localStorage.getItem('token');
       const response = await axios.get('https://8631-112-196-2-205.ngrok-free.app/api/tweets', {
         headers: {
-          'Authorization':token,
+          Authorization: token,
           'ngrok-skip-browser-warning': 'any',
         },
       });
-      setTweetData(response.data);
-    } catch (err) {
-      console.error('Error:', err);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+      return response.data;
+    },
+  });
   
-
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-
-    const token = localStorage.getItem('token');
-    if(!token){
-      alert("Session timeout");
-      return;
-    }
-    try {
+  const postTweetMutation = useMutation({
+    mutationFn: async (data: FormValues) => {
+      const token = localStorage.getItem('token');
       const formData = new FormData();
       formData.append('content', data.tweet);
       if (data.image && data.image.length > 0) {
-        console.log('data.image', data.image)
         formData.append('image', data.image[0]);
       }
+
       const response = await axios.post('https://8631-112-196-2-205.ngrok-free.app/api/tweets', formData, {
         headers: {
-           'Content-Type': 'multipart/form-data',
-           'Authorization': token
+          'Content-Type': 'multipart/form-data',
+          Authorization: token,
         },
       });
-      const newTweet = {
-        content: data.tweet,
-        imageUrl: response.data.imageUrl ? response.data.imageUrl : null,
-      };
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tweets'] });
+      reset(); 
+    },
+    onError: (error) => {
+      console.error('Error posting tweet:', error);
+    },
+  });
 
-      setTweetData((prevTweets) => {
-        const updatedTweets = [newTweet, ...prevTweets];
-        console.log(updatedTweets);
-        return updatedTweets;
-      });
-
-      reset();
-    }catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('Axios Error:', error.response?.data || error.message);
-      } else {
-        console.error('Unexpected Error:', error);
-      }
-    }
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    postTweetMutation.mutate(data);
+    console.log(data);
   };
-  
+
+  if (isLoading) return <p>Loading tweets...</p>;
+  if (error instanceof Error) return <p>An error occurred: {error.message}</p>;
+
   return (
     <Wrap>
       <Wrapper>
@@ -85,10 +91,12 @@ const AddTweet = () => {
             />
             {errors.tweet && <ErrorMessage>{errors.tweet.message}</ErrorMessage>}
             <InputFieldStyle type="file" {...register('image')} />
-            <Buttonnn type="submit">Tweet</Buttonnn>
+            <Buttonnn type="submit">
+              Post
+            </Buttonnn>
           </Form>
           <TweetContainer>
-            {tweetData.map((tweet, index) => (
+            {tweetData.map((tweet: { content: string; imageUrl?: string }, index: number) => (
               <Tweet key={index}>
                 <TweetHeader>
                   <UserName>{userName}</UserName>
