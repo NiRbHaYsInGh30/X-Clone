@@ -11,6 +11,7 @@ import { RouterProvider } from 'react-router';
 import Notifications from './Pages/Notifications';
 import Profile from './Pages/Profile';
 
+
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -25,12 +26,10 @@ const App = () => {
       path: '/signup',
       element:(
         <LoginRoute>
-          
           <SignupLoader />
         </LoginRoute>
     )
     },
-
     {
       element: <Layout />,
       children: [

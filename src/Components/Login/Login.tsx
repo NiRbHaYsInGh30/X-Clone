@@ -48,7 +48,6 @@ export function LoginForm({
              console.error("Error:", error.message);
          }
     }
-
   });
   const onSubmit = async (data: FormValues) => {
     post.mutate(data);

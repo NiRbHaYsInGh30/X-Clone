@@ -24,11 +24,11 @@ const items = [
     url: "/search",
     icon: Hash,
   },
-  {
-    title: "Bookmarks",
-    url: "/bookmarks",
-    icon: Bookmark,
-  },
+  // {
+  //   title: "Bookmarks",
+  //   url: "/bookmarks",
+  //   icon: Bookmark,
+  // },
   {
     title: "Notifications",
     url: "/notifications",

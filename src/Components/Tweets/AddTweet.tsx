@@ -18,7 +18,9 @@ import {
   Wrap,
   Wrapper,
 } from '../Styles/Styles';
+
 import axios from 'axios';
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 type FormValues = {
@@ -30,8 +32,6 @@ const AddTweet = () => {
   const userName = localStorage.getItem('userName');
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>();
   const queryClient = useQueryClient();
-
-
   const { data: tweetData, error, isLoading } = useQuery({
     queryKey: ['tweets'],
     queryFn: async () => {
@@ -46,7 +46,7 @@ const AddTweet = () => {
     },
   });
   
-  const postTweetMutation = useMutation({
+const postTweetMutation = useMutation({
     mutationFn: async (data: FormValues) => {
       const token = localStorage.getItem('token');
       const formData = new FormData();
@@ -54,7 +54,6 @@ const AddTweet = () => {
       if (data.image && data.image.length > 0) {
         formData.append('image', data.image[0]);
       }
-
       const response = await axios.post('https://8631-112-196-2-205.ngrok-free.app/api/tweets', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -72,7 +71,7 @@ const AddTweet = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+const onSubmit: SubmitHandler<FormValues> = (data) => {
     postTweetMutation.mutate(data);
     console.log(data);
   };
@@ -80,7 +79,7 @@ const AddTweet = () => {
   if (isLoading) return <p>Loading tweets...</p>;
   if (error instanceof Error) return <p>An error occurred: {error.message}</p>;
 
-  return (
+return (
     <Wrap>
       <Wrapper>
         <MainContent>
