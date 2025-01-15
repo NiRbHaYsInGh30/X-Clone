@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Badge, Bell, Bookmark, Hash, Home, User} from "lucide-react";
+import { Badge, Bell,  Hash, Home, User} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
